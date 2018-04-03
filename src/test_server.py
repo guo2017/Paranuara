@@ -2,7 +2,7 @@ import unittest
 
 from flask import json
 
-from .server import app
+from server import app
 
 
 class ParanuarafTests(unittest.TestCase):
