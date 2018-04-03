@@ -34,13 +34,14 @@ class ParanuarafTests(unittest.TestCase):
     def test_compnay_employees(self):
         # sends HTTP GET request to the application
         # on the specified path
-        # if no matched employees, return error code 100
+        # if no matched employees, return error code 204
 
         response = self.app.get('/employees/101')
         json_data = json.loads(response.get_data(as_text=True))
         self.assertEqual(json_data['error']['code'], 204)
 
         # assert the response data: there are employees, check the number of employees is right
+        # company with id 1 has 7 employees
         response = self.app.get('/employees/1')
         json_data = json.loads(response.get_data(as_text=True))
         self.assertEqual(len(json_data), 7)
@@ -67,4 +68,3 @@ class ParanuarafTests(unittest.TestCase):
         self.assertEqual(json_data["age"], "54")
         self.assertEqual(json_data['fruits'], ["orange", "banana", "strawberry"])
         self.assertEqual(json_data['vegetables'], ["beetroot"])
-

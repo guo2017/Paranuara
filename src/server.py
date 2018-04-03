@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, jsonify
+from flask import Flask, json, jsonify
 from flask_restful import Api, Resource
 
 app = Flask(__name__)
@@ -67,7 +67,7 @@ class CommonFriends(Resource):
 
             if str(people["index"]) == people02_id:
                 p2 = {"name": people["name"], "age": people["age"], "address": people["address"],
-                          "phone": people["phone"]}
+                      "phone": people["phone"]}
                 for x in people["friends"]:
                     p2_friends.append(x["index"])
         common_friends_ids = [x for x in p1_friends if x in p2_friends]
@@ -75,7 +75,7 @@ class CommonFriends(Resource):
         for people in json_data:
             if people["index"] in common_friends_ids and people["eyeColor"] == 'brown' and people['has_died'] == False:
                 common_friends.append(people)
-        result = {"people_one":p1, "people_two":p2, "common_friends":common_friends}
+        result = {"people_one": p1, "people_two": p2, "common_friends": common_friends}
 
         return jsonify(result)
 
@@ -96,7 +96,8 @@ class FruitsVegetables(Resource):
         favorite_food = target_people["favouriteFood"]
         fruits = [x for x in favorite_food if x in fruit_list]
         vegetables = [x for x in favorite_food if x not in fruit_list]
-        result = {"username": target_people["name"], "age": str(target_people["age"]), "fruits": fruits, "vegetables": vegetables}
+        result = {"username": target_people["name"], "age": str(target_people["age"]), "fruits": fruits,
+                  "vegetables": vegetables}
 
         return jsonify(result)
 
