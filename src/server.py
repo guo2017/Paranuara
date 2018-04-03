@@ -9,7 +9,7 @@ api = Api(app)
 def index():
     return "This is Parranuara"
 
-
+#return all companies
 class Companies(Resource):
     def get(self):
         file_name = 'companies.json'
@@ -17,7 +17,7 @@ class Companies(Resource):
             json_data = json.load(f)
             return json_data
 
-
+#return all employees
 class People(Resource):
     def get(self):
         file_name = 'people.json'
@@ -26,7 +26,7 @@ class People(Resource):
             print(type(json_data))
             return json_data
 
-
+#return employees based on company id
 class CompanyEmployees(Resource):
     def get(self, company_id):
         file_name = 'people.json'
@@ -43,7 +43,7 @@ class CompanyEmployees(Resource):
         else:
             return jsonify(matched_employees)
 
-
+#return common friends of two employees
 class CommonFriends(Resource):
     def get(self, people01_id, people02_id):
         file_name = 'people.json'
@@ -79,7 +79,7 @@ class CommonFriends(Resource):
 
         return jsonify(result)
 
-
+#return fruits and vegetables separately for a given employee
 class FruitsVegetables(Resource):
     def get(self, people_id):
         fruit_list = ['apple', 'orange', 'banana', 'strawberry']
